@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing - Ethan (tragi.c) - Developer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0a;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        #uv-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .pricing-card {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            transition: all 0.3s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(139, 92, 246, 0.3);
+            border-color: rgba(139, 92, 246, 0.5);
+        }
+        .recommended {
+            border: 2px solid #8b5cf6;
+            box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+        .recommended::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #8b5cf6;
+            color: white;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .glow-text {
+            text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <h1 class="text-xl font-bold code-font gradient-text">Ethan (tragi.c)</h1>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="index.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium transition-colors">Home</a>
+                        <a href="pricing.html" class="text-purple-400 hover:text-purple-300 px-3 py-2 text-sm font-medium transition-colors">Pricing</a>
+                        <a href="projects.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium transition-colors">Projects</a>
+                        <a href="contact.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium transition-colors">Contact</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-purple-300">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 border-t border-gray-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="text-gray-300 hover:text-purple-300 block px-3 py-2 text-base font-medium">Home</a>
+                <a href="pricing.html" class="text-purple-400 block px-3 py-2 text-base font-medium">Pricing</a>
+                <a href="projects.html" class="text-gray-300 hover:text-purple-300 block px-3 py-2 text-base font-medium">Projects</a>
+                <a href="contact.html" class="text-gray-300 hover:text-purple-300 block px-3 py-2 text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section class="pt-24 pb-12 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6 glow-text fade-in">Pricing Plans</h1>
+            <p class="text-xl text-gray-300 mb-8 fade-in">Choose the perfect development package for your needs</p>
+        </div>
+    </section>
+
+    <!-- Website Development Pricing -->
+    <section class="py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 gradient-text fade-in">Website Development</h2>
+                <p class="text-lg text-gray-300 fade-in">Professional websites built with modern technologies</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Basic -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Basic</h3>
+                        <p class="text-gray-400 mb-4">1-2 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$25-30</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Simple landing page
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Basic styling
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Mobile responsive
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Fast delivery
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Medium -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Medium</h3>
+                        <p class="text-gray-400 mb-4">3-4 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$35-65</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Multi-page website
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Interactive features
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Basic animations
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Contact forms
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Site (Recommended) -->
+                <div class="pricing-card recommended rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Project Site</h3>
+                        <p class="text-gray-400 mb-4">6-12 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$75</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Full-featured website
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Database integration
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                User authentication
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Advanced animations
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Informational Site -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Informational Site</h3>
+                        <p class="text-gray-400 mb-4">1-6 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$25</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Information showcase
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Clean design
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Fast loading
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                SEO optimized
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Company Site -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Company Site</h3>
+                        <p class="text-gray-400 mb-4">24-48 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$150</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Enterprise-level site
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Multiple pages
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Advanced features
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Premium support
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App Development Pricing -->
+    <section class="py-16 bg-gray-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold mb-4 gradient-text fade-in">Mobile App Development</h2>
+                <p class="text-lg text-gray-300 fade-in">Cross-platform mobile applications</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Simple Game App -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Simple Game App</h3>
+                        <p class="text-gray-400 mb-4">1-3 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$50</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Basic game mechanics
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Cross-platform
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Touch controls
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Score tracking
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Chat App (Outline) -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Video Chat App (Outline)</h3>
+                        <p class="text-gray-400 mb-4">6-9 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$50</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Basic chat interface
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Video/audio preview
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                User interface design
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Proof of concept
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Chat App (Full) -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Video Chat App (Full)</h3>
+                        <p class="text-gray-400 mb-4">12-24 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$100</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Complete backend
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Real-time communication
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                User management
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Production ready
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Informational App -->
+                <div class="pricing-card recommended rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Informational App</h3>
+                        <p class="text-gray-400 mb-4">1-12 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$25-100</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Content display app
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Native performance
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Offline support
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Price varies by complexity
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Video Player App (Outline) -->
+                <div class="pricing-card rounded-xl p-8 relative fade-in">
+                    <div class="text-center">
+                        <h3 class="text-2xl font-bold mb-2">Video Player App (Outline)</h3>
+                        <p class="text-gray-400 mb-4">1-6 hours</p>
+                        <div class="text-4xl font-bold mb-6 gradient-text">$70</div>
+                        <ul class="text-left space-y-3 mb-8">
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Video playback UI
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Basic controls
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Playlist support
+                            </li>
+                            <li class="flex items-center">
+                                <svg class="w-5 h-5 text-green-400 mr-3" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                </svg>
+                                Stream integration
+                            </li>
+                        </ul>
+                        <a href="contact.html" class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors block text-center">
+                            Get Started
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact CTA -->
+    <section class="py-16 bg-gradient-to-r from-purple-900/50 to-blue-900/50">
+        <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold mb-6 fade-in">Looking for something else?</h2>
+            <p class="text-xl text-gray-300 mb-8 fade-in">Contact tragi.c on Discord for custom projects and special requirements</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-in">
+                <a href="contact.html" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all hover:transform hover:-translate-y-1">
+                    Contact Me
+                </a>
+                <a href="https://discord.gg/ajabWB9GEe" target="_blank" class="bg-transparent border-2 border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white px-8 py-3 rounded-lg font-semibold transition-all hover:transform hover:-translate-y-1">
+                    Join Discord Server
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <p class="text-gray-400 code-font">
+                    © 2025 Ethan (tragi.c) - Developer. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+</body>
+</html>
