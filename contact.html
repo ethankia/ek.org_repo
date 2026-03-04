@@ -41,74 +41,141 @@
     </div>
 </nav>
 
-<section class="pt-24 pb-12 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="text-5xl md:text-6xl font-bold mb-6 glow-text">Get In Touch</h1>
-        <p class="text-xl text-gray-300 mb-8">Ready to start your project? Let's discuss your requirements</p>
-    </div>
+<section class="pt-24 pb-12 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 glow-text">Get In Touch</h1>
+    <p class="text-xl text-gray-300 mb-8">Ready to start your project? Let's discuss your requirements</p>
 </section>
 
 <section class="py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-12">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12">
 
-            <!-- Contact Form -->
-            <div class="form-container rounded-xl p-8">
-                <h2 class="text-3xl font-bold mb-6 gradient-text">Project Inquiry</h2>
-                <form class="space-y-6">
-                    <input type="text" placeholder="Your full name" required
-                        class="w-full px-4 py-3 rounded-lg form-input text-white placeholder-gray-400">
-                    <textarea rows="4"
-                        class="w-full px-4 py-3 rounded-lg form-input text-white placeholder-gray-400"
-                        placeholder="Tell me more about your project..."></textarea>
-                    <button type="submit"
-                        class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift">
-                        Send Message
-                    </button>
-                </form>
-            </div>
+<!-- Contact Form -->
+<div class="form-container rounded-xl p-8">
+<h2 class="text-3xl font-bold mb-6 gradient-text">Project Inquiry</h2>
 
-            <!-- Updated Alternative Contact -->
-            <div class="space-y-8">
-                <div>
-                    <h3 class="text-2xl font-bold mb-4 gradient-text">Alternative Contact</h3>
-                    <p class="text-gray-300 mb-6">Prefer direct contact? Reach out below.</p>
+<form id="contact-form" class="space-y-6">
 
-                    <div class="flex flex-col gap-4">
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Name *</label>
+<input type="text" id="name" required
+class="w-full px-4 py-3 rounded-lg form-input text-white">
+</div>
 
-                        <!-- Discord -->
-                        <a href="https://discord.gg/ajabWB9GEe" target="_blank"
-                           class="inline-flex items-center bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift">
-                            Join Discord Server
-                        </a>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Discord Username *</label>
+<input type="text" id="discord" required
+class="w-full px-4 py-3 rounded-lg form-input text-white">
+</div>
 
-                        <!-- Email -->
-                        <a href="mailto:ethankia1619@gmail.com"
-                           class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift">
-                            Email: ethankia1619@gmail.com
-                        </a>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Payment Method *</label>
+<select id="paymentMethod" required
+class="w-full px-4 py-3 rounded-lg form-input text-white">
+<option value="">Select payment method</option>
+<option>CashApp</option>
+<option>PayPal</option>
+<option>Apple Pay</option>
+<option>Multiple</option>
+<option>Other</option>
+</select>
+</div>
 
-                        <!-- SMS -->
-                        <a href="sms:6163870268?body=SITE%20(Do%20not%20change%20anything%20in%20this%20message)"
-                           class="inline-flex items-center bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift">
-                            Text 616-387-0268
-                        </a>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Project Type *</label>
+<select id="projectType" required
+class="w-full px-4 py-3 rounded-lg form-input text-white">
+<option value="">Select project type</option>
+<option>Website</option>
+<option>Mobile App</option>
+</select>
+</div>
 
-                    </div>
-                </div>
-            </div>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Do you understand that more questions will be asked via DM's? *</label>
+<select id="understanding" required
+class="w-full px-4 py-3 rounded-lg form-input text-white">
+<option value="">Please select</option>
+<option>Yes</option>
+<option>No</option>
+</select>
+</div>
 
-        </div>
-    </div>
+<div>
+<label class="block text-sm font-medium text-gray-300 mb-2">Additional Details</label>
+<textarea id="message" rows="4"
+class="w-full px-4 py-3 rounded-lg form-input text-white"></textarea>
+</div>
+
+<button type="submit"
+class="w-full bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift">
+Send Message
+</button>
+
+</form>
+</div>
+
+<!-- Alternative Contact -->
+<div>
+<h3 class="text-2xl font-bold mb-4 gradient-text">Alternative Contact</h3>
+
+<div class="flex flex-col gap-4">
+
+<a href="https://discord.gg/ajabWB9GEe" target="_blank"
+class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift text-center">
+Join Discord Server
+</a>
+
+<a href="mailto:ethankia1619@gmail.com"
+class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift text-center">
+Email: ethankia1619@gmail.com
+</a>
+
+<a href="sms:6163870268?body=SITE%20(Do%20not%20change%20anything%20in%20this%20message)"
+class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-semibold hover-lift text-center">
+Text 616-387-0268
+</a>
+
+</div>
+</div>
+
+</div>
 </section>
 
-<footer class="bg-gray-900 border-t border-gray-800 py-8">
-    <div class="text-center">
-        <p class="text-gray-400 code-font">
-            © 2026 EK Development. All rights reserved.
-        </p>
-    </div>
+<footer class="bg-gray-900 border-t border-gray-800 py-8 text-center">
+<p class="text-gray-400 code-font">© 2026 EK Development. All rights reserved.</p>
 </footer>
+
+<!-- Webhook Script -->
+<script>
+document.getElementById("contact-form").addEventListener("submit", async function(e) {
+e.preventDefault();
+
+const payload = {
+embeds: [{
+title: "New Project Inquiry",
+color: 0x8b5cf6,
+fields: [
+{ name: "Name", value: document.getElementById("name").value, inline: true },
+{ name: "Discord", value: document.getElementById("discord").value, inline: true },
+{ name: "Payment Method", value: document.getElementById("paymentMethod").value, inline: true },
+{ name: "Project Type", value: document.getElementById("projectType").value, inline: true },
+{ name: "Understands DM Questions", value: document.getElementById("understanding").value, inline: true },
+{ name: "Additional Details", value: document.getElementById("message").value || "None provided" }
+],
+timestamp: new Date()
+}]
+};
+
+await fetch("https://discord.com/api/webhooks/1448118196745015367/Q-k8Bk4gm1MkB3MYBgrkciAR4VNRn5ZvJL4Q3jFDMKLlJ3LeXo_QVxBQLT9-DS_tPky2", {
+method: "POST",
+headers: { "Content-Type": "application/json" },
+body: JSON.stringify(payload)
+});
+
+alert("Message sent successfully!");
+document.getElementById("contact-form").reset();
+});
+</script>
 
 </body>
 </html>
