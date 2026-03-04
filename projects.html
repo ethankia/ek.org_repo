@@ -9,7 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  overflow-x: hidden;
+}
+
 .code-font { font-family: 'JetBrains Mono', monospace; }
 
 .gradient-text {
@@ -19,93 +24,105 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
 }
 
 .project-card {
-  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  background: rgba(30,30,30,0.7);
+  backdrop-filter: blur(15px);
   border: 1px solid rgba(139, 92, 246, 0.2);
   transition: all 0.3s ease;
 }
 .project-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
-  border-color: rgba(139, 92, 246, 0.5);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 50px rgba(139, 92, 246, 0.4);
 }
 
 .calculator {
-  backdrop-filter: blur(20px);
-  background: rgba(30,30,30,0.8);
-  border: 1px solid rgba(139,92,246,0.3);
-  box-shadow: 0 0 40px rgba(139,92,246,0.25);
+  backdrop-filter: blur(25px);
+  background: rgba(20,20,20,0.75);
+  border: 1px solid rgba(139,92,246,0.4);
+  box-shadow: 0 0 60px rgba(139,92,246,0.35);
 }
 
 .calc-btn {
-  background: #1f1f1f;
-  transition: all 0.2s ease;
+  background: rgba(40,40,40,0.8);
+  transition: all 0.15s ease;
 }
 .calc-btn:hover {
-  background: #2a2a2a;
-  transform: scale(1.05);
+  background: rgba(70,70,70,0.9);
+  transform: scale(1.07);
+  box-shadow: 0 0 15px rgba(139,92,246,0.5);
+}
+
+.glow-orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.15;
+  z-index: -1;
 }
 </style>
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen">
 
+<div class="glow-orb bg-purple-600 top-10 left-10"></div>
+<div class="glow-orb bg-blue-600 bottom-10 right-10"></div>
+
 <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="flex justify-between items-center h-16">
       <h1 class="text-xl font-bold code-font gradient-text">EK Development</h1>
       <div class="hidden md:flex space-x-8">
-        <a href="index.html" class="text-gray-300 hover:text-purple-300">Home</a>
-        <a href="pricing.html" class="text-gray-300 hover:text-purple-300">Pricing</a>
+        <a href="index.html" class="hover:text-purple-300">Home</a>
+        <a href="pricing.html" class="hover:text-purple-300">Pricing</a>
         <a href="projects.html" class="text-purple-400">Projects</a>
-        <a href="contact.html" class="text-gray-300 hover:text-purple-300">Contact</a>
+        <a href="contact.html" class="hover:text-purple-300">Contact</a>
       </div>
     </div>
   </div>
 </nav>
 
-<section class="pt-28 pb-16 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20 text-center">
+<section class="pt-28 pb-16 text-center">
   <h1 class="text-5xl font-bold mb-4">My Projects</h1>
-  <p class="text-gray-400 text-lg">Live demos and example builds</p>
+  <p class="text-gray-400 text-lg">Premium builds and interactive demos</p>
 </section>
 
-<!-- PROJECT GRID -->
 <section class="py-16">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
     <div class="project-card rounded-xl p-6">
-      <h3 class="text-2xl font-bold gradient-text mb-4">SaaS Platform</h3>
-      <p class="text-gray-400 mb-6">Modern analytics dashboard with subscription system.</p>
+      <h3 class="text-2xl font-bold gradient-text mb-4">SaaS Dashboard</h3>
+      <p class="text-gray-400">Full analytics platform with authentication.</p>
     </div>
 
     <div class="project-card rounded-xl p-6">
-      <h3 class="text-2xl font-bold gradient-text mb-4">Portfolio Website</h3>
-      <p class="text-gray-400 mb-6">Animated personal branding site with smooth UI.</p>
+      <h3 class="text-2xl font-bold gradient-text mb-4">Portfolio System</h3>
+      <p class="text-gray-400">Modern personal branding experience.</p>
     </div>
 
     <div class="project-card rounded-xl p-6">
-      <h3 class="text-2xl font-bold gradient-text mb-4">E-Commerce Store</h3>
-      <p class="text-gray-400 mb-6">Full online store with cart and checkout system.</p>
+      <h3 class="text-2xl font-bold gradient-text mb-4">E-Commerce</h3>
+      <p class="text-gray-400">Cart, checkout, and admin panel system.</p>
     </div>
 
     <div class="project-card rounded-xl p-6">
-      <h3 class="text-2xl font-bold gradient-text mb-4">Mobile App UI</h3>
-      <p class="text-gray-400 mb-6">Clean iOS-style interface mockup with animations.</p>
+      <h3 class="text-2xl font-bold gradient-text mb-4">Mobile UI Kit</h3>
+      <p class="text-gray-400">High fidelity mobile application design.</p>
     </div>
 
     <div class="project-card rounded-xl p-6">
-      <h3 class="text-2xl font-bold gradient-text mb-4">Admin Dashboard</h3>
-      <p class="text-gray-400 mb-6">User management and data visualization system.</p>
+      <h3 class="text-2xl font-bold gradient-text mb-4">Admin Panel</h3>
+      <p class="text-gray-400">User roles and data visualization.</p>
     </div>
 
     <div class="project-card rounded-xl p-6">
       <h3 class="text-2xl font-bold gradient-text mb-4">Landing Page</h3>
-      <p class="text-gray-400 mb-6">High-converting marketing page with motion effects.</p>
+      <p class="text-gray-400">Conversion optimized marketing build.</p>
     </div>
 
   </div>
 </section>
 
-<!-- CALCULATOR -->
 <section class="py-20 border-t border-gray-800">
   <div class="max-w-md mx-auto text-center">
     <h2 class="text-4xl font-bold mb-10 gradient-text">Interactive Calculator</h2>
@@ -140,20 +157,15 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
   </div>
 </section>
 
-<footer class="bg-gray-900 border-t border-gray-800 py-8 text-center">
-  <p class="text-gray-500 code-font">© 2025 EK Development. All rights reserved.</p>
+<footer class="py-8 text-center text-gray-500 code-font">
+© 2025 EK Development
 </footer>
 
 <script>
 let display = document.getElementById("display");
 
-function press(val){
-  display.value += val;
-}
-
-function clearDisplay(){
-  display.value = "";
-}
+function press(val){ display.value += val; }
+function clearDisplay(){ display.value = ""; }
 
 function calculate(){
   if(display.value === "6741"){
@@ -161,17 +173,38 @@ function calculate(){
     display.value = "";
     return;
   }
-
-  try{
-    display.value = eval(display.value);
-  } catch {
-    display.value = "Error";
-  }
+  try { display.value = eval(display.value); }
+  catch { display.value = "Error"; }
 }
 
 function downloadSecret(){
-  const content = "You've found a discount code! Copy and paste this discount code to me to get 20% off your entire order!";
-  const blob = new Blob([content], { type: "text/plain" });
+  const required = "twentypercoff";
+  const extraLength = 32 - required.length;
+  const chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+
+  let randomPart = "";
+  for(let i=0;i<extraLength;i++){
+    randomPart += chars[Math.floor(Math.random()*chars.length)];
+  }
+
+  let combined = (required + randomPart).split('');
+
+  for(let i = combined.length -1; i>0; i--){
+    const j = Math.floor(Math.random()*(i+1));
+    [combined[i],combined[j]]=[combined[j],combined[i]];
+  }
+
+  const finalCode = combined.join('').toUpperCase();
+
+  const content =
+`You've found a discount code! Copy and paste this discount code to me to get 20% off your entire order!
+
+==============================
+YOUR DISCOUNT CODE:
+${finalCode}
+==============================`;
+
+  const blob = new Blob([content], {type:"text/plain"});
   const link = document.createElement("a");
   link.href = URL.createObjectURL(blob);
   link.download = "20PCTOFFMENOW.txt";
