@@ -29,17 +29,26 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
   border-color: rgba(139, 92, 246, 0.5);
 }
 
-#snake-game {
-  border: 2px solid #404040;
-  border-radius: 8px;
-  background: #1a1a1a;
+.calculator {
+  backdrop-filter: blur(20px);
+  background: rgba(30,30,30,0.8);
+  border: 1px solid rgba(139,92,246,0.3);
+  box-shadow: 0 0 40px rgba(139,92,246,0.25);
+}
+
+.calc-btn {
+  background: #1f1f1f;
+  transition: all 0.2s ease;
+}
+.calc-btn:hover {
+  background: #2a2a2a;
+  transform: scale(1.05);
 }
 </style>
 </head>
 
 <body class="bg-gray-900 text-white min-h-screen">
 
-<!-- NAV -->
 <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
@@ -54,154 +63,120 @@ body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
   </div>
 </nav>
 
-<!-- HEADER -->
 <section class="pt-28 pb-16 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20 text-center">
   <h1 class="text-5xl font-bold mb-4">My Projects</h1>
-  <p class="text-gray-400 text-lg">Examples of websites, apps, and interactive builds</p>
+  <p class="text-gray-400 text-lg">Live demos and example builds</p>
 </section>
 
-<!-- PROJECT CARDS -->
+<!-- PROJECT GRID -->
 <section class="py-16">
   <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-8">
 
-    <!-- SaaS Example -->
     <div class="project-card rounded-xl p-6">
       <h3 class="text-2xl font-bold gradient-text mb-4">SaaS Platform</h3>
-      <p class="text-gray-400 mb-6">
-        Modern dashboard layout with analytics, user management, and subscriptions.
-      </p>
-      <div class="bg-gray-800 rounded-lg p-4 text-sm code-font text-purple-400">
-        Dashboard UI<br>
-        API Integration<br>
-        Authentication
-      </div>
+      <p class="text-gray-400 mb-6">Modern analytics dashboard with subscription system.</p>
     </div>
 
-    <!-- Portfolio Example -->
     <div class="project-card rounded-xl p-6">
       <h3 class="text-2xl font-bold gradient-text mb-4">Portfolio Website</h3>
-      <p class="text-gray-400 mb-6">
-        Clean personal brand website with smooth animations and modern UI.
-      </p>
-      <div class="bg-gray-800 rounded-lg p-4 text-sm code-font text-blue-400">
-        Responsive Design<br>
-        Animated Hero<br>
-        Contact Form
-      </div>
+      <p class="text-gray-400 mb-6">Animated personal branding site with smooth UI.</p>
     </div>
 
-    <!-- E-Commerce Example -->
     <div class="project-card rounded-xl p-6">
       <h3 class="text-2xl font-bold gradient-text mb-4">E-Commerce Store</h3>
-      <p class="text-gray-400 mb-6">
-        Full online shop with cart, checkout flow, and product management.
-      </p>
-      <div class="bg-gray-800 rounded-lg p-4 text-sm code-font text-green-400">
-        Cart System<br>
-        Stripe Ready<br>
-        Admin Panel
+      <p class="text-gray-400 mb-6">Full online store with cart and checkout system.</p>
+    </div>
+
+    <div class="project-card rounded-xl p-6">
+      <h3 class="text-2xl font-bold gradient-text mb-4">Mobile App UI</h3>
+      <p class="text-gray-400 mb-6">Clean iOS-style interface mockup with animations.</p>
+    </div>
+
+    <div class="project-card rounded-xl p-6">
+      <h3 class="text-2xl font-bold gradient-text mb-4">Admin Dashboard</h3>
+      <p class="text-gray-400 mb-6">User management and data visualization system.</p>
+    </div>
+
+    <div class="project-card rounded-xl p-6">
+      <h3 class="text-2xl font-bold gradient-text mb-4">Landing Page</h3>
+      <p class="text-gray-400 mb-6">High-converting marketing page with motion effects.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="py-20 border-t border-gray-800">
+  <div class="max-w-md mx-auto text-center">
+    <h2 class="text-4xl font-bold mb-10 gradient-text">Interactive Calculator</h2>
+
+    <div class="calculator rounded-2xl p-6">
+      <input id="display" type="text"
+        class="w-full mb-6 p-4 text-right text-3xl bg-black/40 rounded-lg outline-none code-font"
+        disabled />
+
+      <div class="grid grid-cols-4 gap-4">
+        <button class="calc-btn p-4 rounded-lg" onclick="press('7')">7</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('8')">8</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('9')">9</button>
+        <button class="calc-btn p-4 rounded-lg text-purple-400" onclick="press('/')">÷</button>
+
+        <button class="calc-btn p-4 rounded-lg" onclick="press('4')">4</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('5')">5</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('6')">6</button>
+        <button class="calc-btn p-4 rounded-lg text-purple-400" onclick="press('*')">×</button>
+
+        <button class="calc-btn p-4 rounded-lg" onclick="press('1')">1</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('2')">2</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="press('3')">3</button>
+        <button class="calc-btn p-4 rounded-lg text-purple-400" onclick="press('-')">−</button>
+
+        <button class="calc-btn p-4 rounded-lg" onclick="press('0')">0</button>
+        <button class="calc-btn p-4 rounded-lg" onclick="clearDisplay()">C</button>
+        <button class="calc-btn p-4 rounded-lg bg-purple-600 hover:bg-purple-700" onclick="calculate()">=</button>
+        <button class="calc-btn p-4 rounded-lg text-purple-400" onclick="press('+')">+</button>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- SNAKE GAME -->
-<section class="py-20 border-t border-gray-800">
-  <div class="max-w-4xl mx-auto px-6 text-center">
-    <h2 class="text-4xl font-bold mb-6 gradient-text">Interactive Demo – Snake</h2>
-
-    <canvas id="snake-game" width="400" height="400" class="mx-auto"></canvas>
-
-    <div class="mt-6 text-xl">
-      Score: <span id="score" class="gradient-text">0</span>
-    </div>
-
-    <button onclick="initGame()" class="mt-6 bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-semibold">
-      Restart Game
-    </button>
-  </div>
-</section>
-
-<!-- FOOTER -->
 <footer class="bg-gray-900 border-t border-gray-800 py-8 text-center">
   <p class="text-gray-500 code-font">© 2025 EK Development. All rights reserved.</p>
 </footer>
 
 <script>
-const canvas = document.getElementById("snake-game");
-const ctx = canvas.getContext("2d");
-const scoreEl = document.getElementById("score");
+let display = document.getElementById("display");
 
-const gridSize = 20;
-const tileCount = canvas.width / gridSize;
-
-let snake, food, dx, dy, score, loop;
-
-function initGame() {
-  snake = [{ x: 10, y: 10 }];
-  dx = 1;
-  dy = 0;
-  score = 0;
-  scoreEl.textContent = score;
-  spawnFood();
-  clearInterval(loop);
-  loop = setInterval(updateGame, 120);
+function press(val){
+  display.value += val;
 }
 
-function spawnFood() {
-  food = {
-    x: Math.floor(Math.random() * tileCount),
-    y: Math.floor(Math.random() * tileCount)
-  };
+function clearDisplay(){
+  display.value = "";
 }
 
-function updateGame() {
-  const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-
-  if (
-    head.x < 0 || head.y < 0 ||
-    head.x >= tileCount || head.y >= tileCount ||
-    snake.some(s => s.x === head.x && s.y === head.y)
-  ) {
-    clearInterval(loop);
+function calculate(){
+  if(display.value === "6741"){
+    downloadSecret();
+    display.value = "";
     return;
   }
 
-  snake.unshift(head);
-
-  if (head.x === food.x && head.y === food.y) {
-    score++;
-    scoreEl.textContent = score;
-    spawnFood();
-  } else {
-    snake.pop();
+  try{
+    display.value = eval(display.value);
+  } catch {
+    display.value = "Error";
   }
-
-  drawGame();
 }
 
-function drawGame() {
-  ctx.fillStyle = "#1a1a1a";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  ctx.fillStyle = "#8b5cf6";
-  snake.forEach(segment => {
-    ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
-  });
-
-  ctx.fillStyle = "#3b82f6";
-  ctx.fillRect(food.x * gridSize, gridSize * food.y, gridSize - 2, gridSize - 2);
+function downloadSecret(){
+  const content = "You've found a discount code! Copy and paste this discount code to me to get 20% off your entire order!";
+  const blob = new Blob([content], { type: "text/plain" });
+  const link = document.createElement("a");
+  link.href = URL.createObjectURL(blob);
+  link.download = "20PCTOFFMENOW.txt";
+  link.click();
 }
-
-document.addEventListener("keydown", e => {
-  if (e.key === "ArrowUp" && dy === 0) { dx = 0; dy = -1; }
-  if (e.key === "ArrowDown" && dy === 0) { dx = 0; dy = 1; }
-  if (e.key === "ArrowLeft" && dx === 0) { dx = -1; dy = 0; }
-  if (e.key === "ArrowRight" && dx === 0) { dx = 1; dy = 0; }
-});
-
-initGame();
 </script>
 
 </body>
