@@ -3,301 +3,220 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EK Development</title>
+<title>Projects - EK Development</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  scroll-behavior:smooth;
+body { font-family: 'Inter', sans-serif; background: #0a0a0a; }
+.code-font { font-family: 'JetBrains Mono', monospace; }
+.gradient-text {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-
-body{
-  font-family:'Inter',sans-serif;
-  background:linear-gradient(135deg,#0f172a,#111827,#0f172a);
-  color:white;
-  overflow-x:hidden;
+.game-container {
+  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  border: 2px solid rgba(139, 92, 246, 0.3);
+  box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
 }
-
-/* NAV */
-nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:18px 60px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  backdrop-filter:blur(15px);
-  background:rgba(15,23,42,.65);
-  z-index:1000;
+#snake-game {
+  border: 2px solid #404040;
+  border-radius: 8px;
+  background: #1a1a1a;
 }
-
-nav h2{
-  font-weight:800;
-  font-size:1.2rem;
+.glow-text { text-shadow: 0 0 20px rgba(139, 92, 246, 0.5); }
+.project-card {
+  background: linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  transition: all 0.3s ease;
 }
-
-nav a{
-  color:white;
-  text-decoration:none;
-  margin-left:30px;
-  font-weight:600;
-  transition:.3s;
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+  border-color: rgba(139, 92, 246, 0.5);
 }
-
-nav a:hover{
-  color:#38bdf8;
-}
-
-/* SECTIONS */
-section{
-  padding:140px 60px;
-  max-width:1200px;
-  margin:auto;
-}
-
-h1{
-  font-size:3rem;
-  font-weight:800;
-}
-
-p{
-  color:#9ca3af;
-  margin-top:15px;
-  max-width:600px;
-}
-
-/* PROJECTS */
-.projects{
-  margin-top:50px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:30px;
-}
-
-.card{
-  padding:35px;
-  border-radius:25px;
-  background:rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
-  transition:.3s;
-}
-
-.card:hover{
-  transform:translateY(-8px);
-  background:rgba(255,255,255,.08);
-}
-
-/* GAME */
-.game-wrapper{
-  margin-top:60px;
-  display:flex;
-  justify-content:center;
-}
-
-.game-box{
-  position:relative;
-  padding:30px;
-  border-radius:30px;
-  background:rgba(255,255,255,.05);
-  backdrop-filter:blur(20px);
-  box-shadow:0 30px 80px rgba(0,0,0,.5);
-}
-
-canvas{
-  border-radius:20px;
-  background:radial-gradient(circle at center,#0f172a,#020617);
-  box-shadow:0 0 60px rgba(56,189,248,.3);
-}
-
-#deathScreen{
-  position:absolute;
-  inset:30px;
-  display:none;
-  border-radius:20px;
-  background:rgba(0,0,0,.85);
-  backdrop-filter:blur(10px);
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  font-size:2rem;
-  font-weight:700;
-}
-
-#deathScreen button{
-  margin-top:20px;
-  padding:12px 28px;
-  border:none;
-  border-radius:12px;
-  background:linear-gradient(90deg,#38bdf8,#6366f1);
-  color:white;
-  font-weight:600;
-  cursor:pointer;
-}
-
-.upgrades{
-  margin-top:30px;
-  display:flex;
-  justify-content:center;
-  gap:20px;
-}
-
-.upgrades button{
-  padding:12px 22px;
-  border-radius:14px;
-  border:none;
-  background:rgba(255,255,255,.07);
-  color:white;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.upgrades button:hover{
-  background:rgba(255,255,255,.15);
+.controls {
+  background: #2d2d2d;
+  border: 1px solid #404040;
+  border-radius: 8px;
 }
 </style>
 </head>
 
-<body>
+<body class="bg-gray-900 text-white min-h-screen">
 
-<nav>
-  <h2>EK Development</h2>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#projects">Projects</a>
-    <a href="#game">Game</a>
-  </div>
-</nav>
-
-<section id="home">
-  <h1>Premium Development</h1>
-  <p>Modern, fast, and visually powerful digital experiences. Clean UI. Smooth animation. High quality builds.</p>
-</section>
-
-<section id="projects">
-  <h1>Projects</h1>
-  <div class="projects">
-    <div class="card">
-      <h3>Web Platforms</h3>
-      <p>Professional, responsive, production-ready websites.</p>
-    </div>
-    <div class="card">
-      <h3>Game Systems</h3>
-      <p>Interactive browser and Roblox experiences.</p>
-    </div>
-    <div class="card">
-      <h3>Custom UI</h3>
-      <p>Dashboards, tools, and polished interfaces.</p>
-    </div>
-  </div>
-</section>
-
-<section id="game">
-  <h1>Snake Game</h1>
-
-  <div class="game-wrapper">
-    <div class="game-box">
-      <canvas id="gameCanvas" width="500" height="500"></canvas>
-
-      <div id="deathScreen">
-        <div>You Died</div>
-        <button onclick="restartGame()">Restart</button>
+<nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-16">
+      <h1 class="text-xl font-bold code-font gradient-text">EK Development</h1>
+      <div class="hidden md:block">
+        <div class="ml-10 flex items-baseline space-x-8">
+          <a href="index.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium">Home</a>
+          <a href="pricing.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium">Pricing</a>
+          <a href="projects.html" class="text-purple-400 px-3 py-2 text-sm font-medium">Projects</a>
+          <a href="contact.html" class="text-gray-300 hover:text-purple-300 px-3 py-2 text-sm font-medium">Contact</a>
+        </div>
       </div>
     </div>
   </div>
+</nav>
 
-  <div class="upgrades">
-    <button onclick="increaseSpeed()">Speed +</button>
-    <button onclick="increaseSize()">Grow +</button>
+<section class="pt-24 pb-12 bg-gradient-to-br from-gray-900 via-purple-900/20 to-blue-900/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <h1 class="text-5xl md:text-6xl font-bold mb-6 glow-text">My Projects</h1>
+    <p class="text-xl text-gray-300 mb-8">Explore my work and interactive demos</p>
   </div>
 </section>
 
+<section class="py-16">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h2 class="text-4xl font-bold mb-4 gradient-text">Snake Game</h2>
+      <p class="text-lg text-gray-300">Classic snake game built with JavaScript and HTML5 Canvas</p>
+    </div>
+
+    <div class="game-container rounded-xl p-8">
+      <div class="flex flex-col lg:flex-row gap-8 items-center justify-center">
+
+        <div class="text-center">
+          <canvas id="snake-game" width="400" height="400"></canvas>
+          <div class="mt-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">
+              Score: <span id="score" class="gradient-text">0</span>
+            </div>
+            <div class="text-sm text-gray-400">
+              Use Arrow Keys or WASD to control
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-6">
+          <div class="controls p-6">
+            <h3 class="text-xl font-bold mb-4 gradient-text">How to Play</h3>
+            <p class="text-sm text-gray-400">
+              Arrow Keys or WASD to move.<br>
+              Press SPACE to restart.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <button onclick="restartGame()"
+              class="bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+              Restart Game
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="bg-gray-900 border-t border-gray-800 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    <p class="text-gray-400 code-font">
+      © 2025 EK Development. All rights reserved.
+    </p>
+  </div>
+</footer>
+
 <script>
-const canvas=document.getElementById("gameCanvas");
-const ctx=canvas.getContext("2d");
-const deathScreen=document.getElementById("deathScreen");
+const canvas = document.getElementById("snake-game");
+const ctx = canvas.getContext("2d");
+const scoreEl = document.getElementById("score");
 
-let grid=20;
-let tiles=canvas.width/grid;
-let snake,food,dx,dy,speed,loop;
+const gridSize = 20;
+const tileCount = canvas.width / gridSize;
 
-function initGame(){
-  snake=[{x:10,y:10}];
-  dx=1;dy=0;
-  speed=120;
+let snake, food, dx, dy, score, speed, loop, gameOver;
+
+function initGame() {
+  snake = [{ x: 10, y: 10 }];
+  dx = 1;
+  dy = 0;
+  score = 0;
+  speed = 120;
+  gameOver = false;
+  scoreEl.textContent = score;
   spawnFood();
-  deathScreen.style.display="none";
-  start();
+  startLoop();
 }
 
-function start(){
+function startLoop() {
   clearInterval(loop);
-  loop=setInterval(draw,speed);
+  loop = setInterval(updateGame, speed);
 }
 
-function spawnFood(){
-  food={
-    x:Math.floor(Math.random()*tiles),
-    y:Math.floor(Math.random()*tiles)
+function spawnFood() {
+  food = {
+    x: Math.floor(Math.random() * tileCount),
+    y: Math.floor(Math.random() * tileCount)
   };
 }
 
-function draw(){
-  ctx.fillStyle="#020617";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+function updateGame() {
+  if (gameOver) return;
 
-  const head={x:snake[0].x+dx,y:snake[0].y+dy};
+  const head = { x: snake[0].x + dx, y: snake[0].y + dy };
 
-  if(
-    head.x<0||head.y<0||
-    head.x>=tiles||head.y>=tiles||
-    snake.some(s=>s.x===head.x&&s.y===head.y)
-  ){
-    deathScreen.style.display="flex";
-    clearInterval(loop);
+  if (
+    head.x < 0 || head.y < 0 ||
+    head.x >= tileCount || head.y >= tileCount ||
+    snake.some(s => s.x === head.x && s.y === head.y)
+  ) {
+    gameOver = true;
     return;
   }
 
   snake.unshift(head);
 
-  if(head.x===food.x&&head.y===food.y){
+  if (head.x === food.x && head.y === food.y) {
+    score++;
+    scoreEl.textContent = score;
     spawnFood();
-  }else{
+    if (speed > 60) {
+      speed -= 5;
+      startLoop();
+    }
+  } else {
     snake.pop();
   }
 
-  snake.forEach((s,i)=>{
-    ctx.fillStyle=`hsl(${200+i*4},100%,60%)`;
-    ctx.fillRect(s.x*grid,s.y*grid,grid-2,grid-2);
+  drawGame();
+}
+
+function drawGame() {
+  ctx.fillStyle = "#1a1a1a";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  ctx.fillStyle = "#8b5cf6";
+  snake.forEach(segment => {
+    ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
   });
 
-  ctx.fillStyle="#22c55e";
-  ctx.fillRect(food.x*grid,food.y*grid,grid-2,grid-2);
+  ctx.fillStyle = "#3b82f6";
+  ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
 }
 
-document.addEventListener("keydown",e=>{
-  if(e.key==="ArrowUp"&&dy===0){dx=0;dy=-1;}
-  if(e.key==="ArrowDown"&&dy===0){dx=0;dy=1;}
-  if(e.key==="ArrowLeft"&&dx===0){dx=-1;dy=0;}
-  if(e.key==="ArrowRight"&&dx===0){dx=1;dy=0;}
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault();
+    initGame();
+    return;
+  }
+
+  if ((e.key === "ArrowUp" || e.key === "w") && dy === 0) { dx = 0; dy = -1; }
+  if ((e.key === "ArrowDown" || e.key === "s") && dy === 0) { dx = 0; dy = 1; }
+  if ((e.key === "ArrowLeft" || e.key === "a") && dx === 0) { dx = -1; dy = 0; }
+  if ((e.key === "ArrowRight" || e.key === "d") && dx === 0) { dx = 1; dy = 0; }
 });
 
-function restartGame(){initGame();}
-
-function increaseSpeed(){
-  if(speed>50){
-    speed-=15;
-    start();
-  }
-}
-
-function increaseSize(){
-  snake.push({...snake[snake.length-1]});
+function restartGame() {
+  initGame();
 }
 
 initGame();
