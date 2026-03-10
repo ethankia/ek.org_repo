@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Launch WrestlePro AI</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  font-family:'Inter',sans-serif;
+  background:#0a0a0a;
+  overflow-x:hidden;
+}
+
+.code-font{
+  font-family:'JetBrains Mono',monospace;
+}
+
+.gradient-text{
+  background:linear-gradient(135deg,#8b5cf6,#3b82f6,#06b6d4);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.glow-orb{
+  position:absolute;
+  width:400px;
+  height:400px;
+  border-radius:50%;
+  filter:blur(120px);
+  opacity:.15;
+  z-index:-1;
+}
+
+.launch-btn{
+  background:rgba(30,30,30,0.75);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(139,92,246,0.4);
+  transition:all .35s ease;
+  box-shadow:0 0 40px rgba(139,92,246,.25);
+}
+
+.launch-btn:hover{
+  transform:scale(1.08) translateY(-5px);
+  box-shadow:0 0 70px rgba(139,92,246,.6);
+  border-color:rgba(139,92,246,0.9);
+}
+
+.launch-btn:active{
+  transform:scale(.96);
+}
+</style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+<div class="glow-orb bg-purple-600 top-10 left-10"></div>
+<div class="glow-orb bg-blue-600 bottom-10 right-10"></div>
+
+<!-- NAVBAR -->
+
+<nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-800">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="flex justify-between items-center h-16">
+      <h1 class="text-xl font-bold code-font gradient-text">EK Development</h1>
+
+      <div class="hidden md:flex space-x-8">
+        <a href="index.html" class="hover:text-purple-300">Home</a>
+        <a href="pricing.html" class="hover:text-purple-300">Pricing</a>
+        <a href="projects.html" class="hover:text-purple-300">Projects</a>
+        <a href="contact.html" class="hover:text-purple-300">Contact</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- MAIN -->
+
+<div class="flex items-center justify-center h-screen text-center px-6">
+
+<div>
+
+<h1 class="text-5xl font-bold mb-12 gradient-text code-font">
+WrestlePro AI
+</h1>
+
+<a href="https://wrestlepro.lovable.app" target="_blank">
+
+<button class="launch-btn px-16 py-6 rounded-2xl text-2xl font-semibold code-font text-white">
+
+Launch WrestlePro AI 🚀
+
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+<footer class="py-8 text-center text-gray-500 code-font">
+© 2025 EK Development
+</footer>
+
+</body>
+</html>
